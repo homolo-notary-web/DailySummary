@@ -1,8 +1,8 @@
 #### 1. 如何在`page`页面,`组件`以及`封装的js复用工具类文件`获取app globalData中存储的全局变量？
 
-- `page`： **this.$parent.globalData.applyId **
+- `page`： **this.$parent.globalData.applyId**
 - `组件`：**this.$root.$parent.globalData.applyId**
-- ·js工具类文件·：**wepy.$instance.globalData.tokenId**
+- `js工具类文件`·：**wepy.$instance.globalData.tokenId**
 
 #### 2. 关于微信小程序项目路由`wx.navigateTo`跳转只记录10层的限制，如何更好处理，避免页面卡死？
 
@@ -12,7 +12,7 @@
 
 - `wx.reLaunch`：**关闭之前打开的所有页面**，然后打开到应用内的某个页面。这个功能可以很好解决navigateTo10层限制问题。
 
-- `wx.navigateTo`：**关闭当前页面，跳转到应用内的某个页面。
+- `wx.navigateTo`：**关闭当前页面**，跳转到应用内的某个页面。
 
  因此：重要的事情说三遍：**在合理的前提下，请尽可能的用wx.redirectTo以及wx.reLaunch代替wx.navigateTo!** ...
 
@@ -102,7 +102,7 @@ bindInput(e) {
 
 - `wx:for`循环遍历 ：双层for循环可能导致，无法区分获取每一层循环的`item`,可以使用`wx:for-item="ele"`的形式重置item。
 
-注意写法：**wx:for-item**指定数组当前元素的变量名 、**wx:for-index **可以指定数组当前循环下标索引的变量名
+注意写法：**wx:for-item**指定数组当前元素的变量名 、**wx:for-index**可以指定数组当前循环下标索引的变量名
 
 ```html
 <view wx:for="{{detailLists}}" wx:key="index">
@@ -141,8 +141,8 @@ wx.setNavigationBarTitle({
 
 - 在使用`wx.chooseImage`选择相册图片后，要想显示选择的图片，只能使用`<image>`标签，不能使用**view + background-image**，否则图片在开发工具可以正常显示，在真机无法正常显示！
 
-- `wx.chooseImage`选择图片后，api返回的只是选定照片的本地图片文件路径列表，虽然可以直接用`<image>`标签展示，但是要想正确的保存该图片到自己的服务器后端，还需要调用微信自身的上传方法`wx.uploadFile ，将图片上传自己的服务器后台。
-- `wx.uploadFile`的`filePath`参数：暂存图片路径  `url`参数：自己服务器后端的请求地址  `返回值`是请求自己后台请求地址后的返回结果
+- `wx.chooseImage`选择图片后，api返回的只是选定照片的本地图片文件路径列表，虽然可以直接用`<image>`标签展示，但是要想正确的保存该图片到自己的服务器后端，还需要调用微信自身的上传方法`wx.uploadFile` ，将图片上传自己的服务器后台。
+- `wx.uploadFile`的`filePath`参数：暂存图片路径  / `url`参数：自己服务器后端的请求地址  / `返回值`是请求自己后台请求地址后的返回结果
 
 ```javascript
 // 1、选择图片
