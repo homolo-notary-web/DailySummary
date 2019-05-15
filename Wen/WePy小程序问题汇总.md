@@ -1,6 +1,7 @@
 ### 项目名称：一网通办WePy小程序
 
 #### 框架：`Wepy`小程序框架 + `Vant`移动端组件库
+---
 
 #### 问题1：
 
@@ -12,8 +13,7 @@
 #### 解决方法：
 
 1. app.wpy 页面获取设备品牌，设置为全局变量。获取系统信息API参考[链接](https://developers.weixin.qq.com/miniprogram/dev/api/wx.getSystemInfo.html?search-key=getSystemInfo)
-
-   ```javascript
+```javascript
    // 获取手机系统信息
    wx.getSystemInfo({ 
        success(res) {
@@ -24,14 +24,25 @@
            }
        }
    })
-   ```
+```
 
-2. 在需要兼容的页面，获取全局变量，进行样式重置。
+2. 在需要兼容的页面，获取全局变量，区分手机型号进行样式重置。（增高页面下边距padding,生成垂直滚动条）
 
-   ```javascript
+```javascript
    onLoad () {
        this.isHuaWei = this.$parent.globalData.isHuaWei;
    }
-   ...
-   ```
+```
+---
+#### 问题2：
 
+- 在使用三目运算符时`eslint`检查报错：Unnecessary use of boolean literals in conditional expression.eslint(no-unneeded-ternary)
+
+#### 解决办法：
+
+```javascript
+// 错误方式：
+this.isAddedValueTax = result.invoiceType === 'Common'? false : true; 
+// 正确方式：
+this.isAddedValueTax = result.invoiceType !== 'Common';
+```
